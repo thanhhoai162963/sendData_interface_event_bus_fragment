@@ -15,8 +15,13 @@ import java.lang.Exception
 
 
 class BlankFragment1 : Fragment() {
-
-
+     var mOnSendData: OnSendData? =null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnSendData){
+            mOnSendData = context
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +31,7 @@ class BlankFragment1 : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_blank1, container, false)
         view.button_send.setOnClickListener {
-            EventBus.getDefault().post(Message("thanh123"))
+            mOnSendData?.sendData(view.edt1.text.toString())
         }
 
         return view

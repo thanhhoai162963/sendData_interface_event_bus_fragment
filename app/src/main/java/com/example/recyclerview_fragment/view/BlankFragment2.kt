@@ -24,21 +24,11 @@ class BlankFragment2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_blank2,container,false)
+        val data = arguments?.getString("data")
+        view.text2.text = data
         return view
     }
 
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
 
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
-    }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onReceiver(message: Message){
-        text2.text = message.mess
-    }
 
 }
