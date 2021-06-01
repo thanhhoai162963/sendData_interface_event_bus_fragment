@@ -11,26 +11,13 @@ import com.example.recyclerview_fragment.view.OnSendData
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(), OnSendData {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportFragmentManager.beginTransaction()
             .add(R.id.container, BlankFragment1(), "blankFragment1")
-            .addToBackStack("blankFragment1")
-            .commit()
-    }
-
-    override fun sendData(data: String) {
-
-        val bundle = Bundle()
-        bundle.putString("data", data)
-        val blankFragment2 = BlankFragment2()
-
-        blankFragment2.arguments = bundle
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.container, blankFragment2, "blankFragment2")
+            .add(R.id.container,BlankFragment2())
             .commit()
     }
 
@@ -38,4 +25,8 @@ class MainActivity : AppCompatActivity(), OnSendData {
         super.onResume()
 
     }
+
+
+
+
 }
